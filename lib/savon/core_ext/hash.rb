@@ -60,8 +60,11 @@ private
           inorder(value).each { |subkey| nested_data_to_soap_xml subkey, value[subkey] }
         end
       else
-        @soap_xml.tag!(key.to_soap_key) { @soap_xml << value.to_soap_value }
-    end
+        unless value.attribute_id.blank?
+          @soap_xml.tag!(key.to_soap_key, :id=>value.attribute_id.to_soap_value) { @soap_xml << value.to_soap_value }
+        else
+          @soap_xml.tag!(key.to_soap_key) { @soap_xml << value.to_soap_value }
+        end    end
   end
 
   # Takes a +hash+, removes the :@inorder marker and returns its keys.

@@ -1,5 +1,7 @@
 class Object
 
+  attr_accessor :attribute_id
+
   # Returns +true+ if the Object is false, empty, or a whitespace string.
   # For example, "", false, nil, [], and {} are blank.
   # Implementation from ActiveSupport.
